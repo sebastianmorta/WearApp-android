@@ -9,15 +9,16 @@
 
     <TextView
         android:id="@+id/textViewDate"
-        android:layout_width="188dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="296dp"
         android:layout_height="60dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="60dp"
         android:text="Wybierz datę"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:layout_editor_absoluteX="146dp" />
+        tools:layout_editor_absoluteX="92dp" />
 
     <TextView
         android:id="@+id/title"
@@ -78,5 +79,33 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDate"
         tools:layout_editor_absoluteX="56dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:hint="Wpisz miasto"
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="351dp" />
+
+    <Switch
+        android:id="@+id/switchLocation"
+        android:layout_width="166dp"
+        android:layout_height="44dp"
+        android:text="twoja lokalizacja"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="429dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@drawable/abc_vector_test"
+        tools:layout_editor_absoluteX="405dp"
+        tools:layout_editor_absoluteY="749dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,14 @@
 package com.example.projekt3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
@@ -13,8 +18,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.NumberPicker;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -34,6 +43,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity  {
 
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
     private TextView tescik;
     private static final String TAG = "MainActivity";
     private TextView mDisplayDate;
@@ -49,6 +59,29 @@ public class MainActivity extends AppCompatActivity  {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
+
+            final Switch simple_switch = (Switch) findViewById(R.id.switchLocation);
+//            FloatingActionButton Fbtn= (FloatingActionButton)findViewById(R.id.floatingbtn);
+            findViewById(R.id.floatingbtn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(simple_switch.isChecked())
+                    {
+                        Log.d(TAG,"jest mamy to mordo w chuj");
+                        if(ContextCompat.checkSelfPermission(getApplicationContext(),
+                                Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
+                        {
+                            ActivityCompat.requestPermissions(
+                                    MainActivity.this,
+                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                    REQUEST_CODE_LOCATION_PERMISSION);
+                        }else getCurrentLocation();
+                    }else {Log.d(TAG, "chuj nie mamy tego ");}
+                }
+            });
+
+
+
 
             mDisplayDate = (TextView)findViewById(R.id.textViewDate);
             mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +155,21 @@ public class MainActivity extends AppCompatActivity  {
 
         }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length>0){
+            if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                getCurrentLocation();
+            }else {
+                Toast.makeText(this, "permission denied",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
+    private void getCurrentLocation(){
+
+}
 
     class weatherTask extends AsyncTask<String, Void, Void> {
 

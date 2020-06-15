@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient1"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        app:srcCompat="@drawable/shirt"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="264dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/hat"
+        tools:layout_editor_absoluteX="165dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="432dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="11dp"
+        android:fontFamily="casual"
+        android:text="WEARAPP"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#4273FF"
+        android:textSize="44sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="41dp"
+        android:layout_height="680dp"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="118dp">
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="match_parent"
+            android:layout_height="145dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="match_parent"
+            android:layout_height="224dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="61dp"
+            android:layout_height="225dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="266dp"
+        android:layout_height="87dp"
+        app:srcCompat="@drawable/shoes"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="714dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        app:srcCompat="@drawable/pants"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="494dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,7 @@ import android.icu.text.SimpleDateFormat;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -63,11 +64,12 @@ public class MainActivity extends AppCompatActivity {
 
     String tester;
     String tester2;
-
+    String API = "98dc0f0402msh27da9f9ed7c338bp144148jsn25fd970a5e46";
+    String API2 = "2d48d2bf10mshd845969cdb76016p1a1668jsn9acde4e25dc1";
     String CITY = "Wroclaw";
     double lat;
     double lon;
-    String URL = "https://community-open-weather-map.p.rapidapi.com/forecast?q=" + CITY;
+    String URL = "https://community-open-weather-map.p.rapidapi.com/forecast?q=";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         textViewLatLong= findViewById(R.id.textViewtest2);
         progressBar = findViewById(R.id.loader);
-
+        editTextLocation = findViewById(R.id.ed_location);
         final Switch simple_switch = (Switch) findViewById(R.id.switchLocation);
 //            FloatingActionButton Fbtn= (FloatingActionButton)findViewById(R.id.floatingbtn);
         findViewById(R.id.floatingbtn).setOnClickListener(new View.OnClickListener() {
@@ -83,15 +85,28 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(simple_switch.isChecked())
                 {
-                    Log.d(TAG, "jest mamy to mordo w chuj");
-                    if (ContextCompat.checkSelfPermission(getApplicationContext(),
+
+                        if (ContextCompat.checkSelfPermission(getApplicationContext(),
                             Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                                 ActivityCompat.requestPermissions(
                                 MainActivity.this,
                                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                 REQUEST_CODE_LOCATION_PERMISSION);
-                } else { getCurrentLocation(); }
-                    }else {Log.d(TAG, "chuj nie mamy tego ");}
+                                Log.d(TAG, "jest mamy to mordo w chuj");
+                                OkHttpClient client = new OkHttpClient();
+                                new weatherTask().execute();
+                        } else { getCurrentLocation();  Log.d(TAG, "jest mamy tofasfdasdfasdfadsf mordo w chuj");}
+                    }
+                else if(!editTextLocation.getText().equals(""))
+                    {
+                        CITY = String.valueOf(editTextLocation.getText());
+                        URL ="https://community-open-weather-map.p.rapidapi.com/forecast?q="+ CITY;
+                        Log.d(TAG, "chuj nie mamy tego ");
+                        OkHttpClient client = new OkHttpClient();
+                        new weatherTask().execute();
+                    }
+//                OkHttpClient client = new OkHttpClient();
+//                new weatherTask().execute();
             }
         });
 
@@ -168,8 +183,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "aktualna data do wszystkiego" + selected_date);
                 tescik = findViewById(R.id.textViewtest);
 
-                OkHttpClient client = new OkHttpClient();
-                new weatherTask().execute();
+//                OkHttpClient client = new OkHttpClient();
+//                new weatherTask().execute();
             }
         };
 
@@ -212,6 +227,8 @@ public class MainActivity extends AppCompatActivity {
                                             lon = locationResult.getLocations().get(latestLocationIndex).getLongitude();
                                             textViewLatLong.setText(String.format("Latitude:%s\nLongtitude:%s",lat,lon));
                                             URL = "https://community-open-weather-map.p.rapidapi.com/forecast?lat="+lat+"&lon="+lon;
+                                        OkHttpClient client = new OkHttpClient();
+                                        new weatherTask().execute();
                         }
                         progressBar.setVisibility(View.GONE);
                     }
@@ -221,28 +238,16 @@ public class MainActivity extends AppCompatActivity {
     class weatherTask extends AsyncTask<String, Void, Void> {
 
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-
-
-//        findViewById(R.id.loader).setVisibility(View.VISIBLE);
-//        // findViewById(R.id.mainContainer).setVisibility(View.GONE);
-//        findViewById(R.id.errorText).setVisibility(View.GONE);
-    }
-
-    @Override
     protected Void doInBackground(final String... strings) {
-        //String response = HttpRequest.excuteGet("https://api.openweathermap.org/data/2.5/weather?q=" + CITY + "&units=metric&appid=" + API);
-        OkHttpClient client = new OkHttpClient();
 
+        OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(URL)
                 .get()
                 .addHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com")
-                .addHeader("x-rapidapi-key", "2d48d2bf10mshd845969cdb76016p1a1668jsn9acde4e25dc1")
+                .addHeader("x-rapidapi-key", API)
                 .build();
 
-        //Response response = client.newCall(request).execute();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -254,7 +259,6 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     final String myResponse = response.body().string();
                     tester=myResponse;
-                    //                      tescik.setText("testeaasdr2");
                     try {
                         final JSONObject jsonObj = new JSONObject(tester);
                         JSONObject weather;
@@ -278,38 +282,13 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                         }
-                        //tester2 = weather.getString("main");
-//                            tester2 = weather.getString("temp");
                     } catch (JSONException | ParseException e) {
                         e.printStackTrace();
                     }
-                    //zobaczymy co to
-//                        MainActivity.this.runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                tescik.setText(tester2);
-//                            }
-//                        });
 
                 }
             }
         });
-//
-//            try {
-//                JSONObject jsonObj = new JSONObject(tester);
-//                JSONObject list = jsonObj.getJSONObject("list");
-////                JSONObject  = jsonObj.getJSONObject();
-////                JSONObject  = jsonObj.getJSONObject();
-////                JSONObject  = jsonObj.getJSONObject();
-////                JSONObject  = jsonObj.getJSONObject();
-////                JSONObject  = jsonObj.getJSONObject();
-////                JSONObject  = jsonObj.getJSONObject();
-////                JSONObject  = jsonObj.getJSONObject();
-////                JSONObject  = jsonObj.getJSONObject();
-//
-//            }catch (JSONException e) {
-//
-//            }
         return null;
     }
 

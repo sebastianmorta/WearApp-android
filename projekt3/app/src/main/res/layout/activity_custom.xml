@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient3"
+    tools:context=".CustomActivity">
+
+
+    <ScrollView
+        android:layout_width="482dp"
+        android:layout_height="212dp"
+        android:scaleType="fitXY"
+        android:fontFamily="@font/caveat_brush">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="209dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:orientation="vertical"
+            android:fontFamily="@font/caveat_brush">
+
+            <Switch
+                android:id="@+id/switch1"
+                android:fontFamily="@font/caveat_brush"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/country_text"
+                android:drawableLeft="@drawable/brush"
+                android:textColor="#FFFFFF"
+                android:text="  bialy"
+                android:textSize="26dp" />
+
+            <Switch
+                android:id="@+id/switch2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/country_text"
+                android:drawableLeft="@drawable/brush"
+                android:fontFamily="@font/caveat_brush"
+                android:text="  czerwony"
+                android:textColor="#CD0A0A"
+                android:textSize="26sp" />
+
+            <Switch
+                android:id="@+id/switch3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/country_text"
+                android:drawableLeft="@drawable/brush"
+                android:fontFamily="@font/caveat_brush"
+                android:textColor="#674114"
+                android:text="  brazowy"
+                android:textSize="26dp" />
+            <Switch
+                android:id="@+id/switch4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/country_text"
+                android:drawableLeft="@drawable/brush"
+                android:fontFamily="@font/caveat_brush"
+                android:textColor="#1C69EC"
+                android:text="  niebieski"
+                android:textSize="26dp" />
+            <Switch
+                android:id="@+id/switch5"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/country_text"
+                android:drawableLeft="@drawable/brush"
+                android:fontFamily="@font/caveat_brush"
+                android:textColor="#6E6E6E"
+                android:text="  szary"
+                android:textSize="26dp" />
+
+            <Switch
+                android:id="@+id/switch6"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/country_text"
+                android:drawableLeft="@drawable/brush"
+                android:fontFamily="@font/caveat_brush"
+                android:textColor="#FF9800"
+                android:text="  pomaranczowy"
+                android:textSize="26dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

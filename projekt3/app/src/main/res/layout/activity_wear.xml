@@ -1,36 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient1"
-    tools:context=".MainActivity">
-
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="230dp"
-        android:layout_height="230dp"
-        app:srcCompat="@drawable/shirt"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="264dp" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:srcCompat="@drawable/hat"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="114dp" />
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="432dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="11dp"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="casual"
         android:text="WEARAPP"
         android:textAlignment="center"
@@ -38,52 +18,94 @@
         android:textColor="#4273FF"
         android:textSize="44sp"
         android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup2"
-        android:layout_width="41dp"
-        android:layout_height="680dp"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="118dp">
+        android:layout_width="32dp"
+        android:layout_height="642dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView">
 
         <RadioButton
-            android:id="@+id/radioButton6"
+            android:id="@+id/radioButtonHat"
             android:layout_width="match_parent"
-            android:layout_height="145dp" />
+            android:layout_height="155dp" />
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/radioButtonShirt"
             android:layout_width="match_parent"
-            android:layout_height="224dp" />
+            android:layout_height="207dp" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="61dp"
-            android:layout_height="225dp" />
+            android:id="@+id/radioButtonTrousers"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radioButtonShoes"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RadioGroup>
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="266dp"
-        android:layout_height="87dp"
-        app:srcCompat="@drawable/shoes"
-        tools:layout_editor_absoluteX="107dp"
-        tools:layout_editor_absoluteY="714dp" />
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/hat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/shirt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        app:srcCompat="@drawable/pants"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="494dp" />
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/pants"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="270dp"
+        android:layout_height="83dp"
+        android:src="@drawable/shoes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingbtn2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75"
+        app:srcCompat="@drawable/arrow" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,13 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.icu.text.SimpleDateFormat;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,16 +35,23 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -62,59 +72,83 @@ public class MainActivity extends AppCompatActivity {
     private TimePickerDialog.OnTimeSetListener mTimeSetListener;
     String selected_date;
 
-    String tester;
-    String tester2;
     String API = "98dc0f0402msh27da9f9ed7c338bp144148jsn25fd970a5e46";
     String API2 = "2d48d2bf10mshd845969cdb76016p1a1668jsn9acde4e25dc1";
     String CITY = "Wroclaw";
-    double lat;
-    double lon;
+
     String URL = "https://community-open-weather-map.p.rapidapi.com/forecast?q=";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+//        findViewById(R.id.buttontst).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Ion.with(getApplicationContext()).load("https://www.zalando.pl/odziez-meska-koszulki/_brazowy/?price_from=115&price_to=403&upper_material=d%C5%BCersej").asString().setCallback(new FutureCallback<String>() {
+//                    @Override
+//                    public void onCompleted(Exception e, String result) {
+//                        Log.d(TAG, "data            "+ result);
+//
+//                    }
+//                });
+//
+//            }
+//        });
         textViewLatLong= findViewById(R.id.textViewtest2);
         progressBar = findViewById(R.id.loader);
         editTextLocation = findViewById(R.id.ed_location);
         final Switch simple_switch = (Switch) findViewById(R.id.switchLocation);
-//            FloatingActionButton Fbtn= (FloatingActionButton)findViewById(R.id.floatingbtn);
+        simple_switch.setTypeface(ResourcesCompat.getFont(this  ,R.font.caveat_brush));
         findViewById(R.id.floatingbtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 if(simple_switch.isChecked())
                 {
-
-                        if (ContextCompat.checkSelfPermission(getApplicationContext(),
-                            Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                ActivityCompat.requestPermissions(
-                                MainActivity.this,
-                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                REQUEST_CODE_LOCATION_PERMISSION);
-                                Log.d(TAG, "jest mamy to mordo w chuj");
-                                OkHttpClient client = new OkHttpClient();
-                                new weatherTask().execute();
-                        } else { getCurrentLocation();  Log.d(TAG, "jest mamy tofasfdasdfasdfadsf mordo w chuj");}
-                    }
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(
+                                    MainActivity.this,
+                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                    REQUEST_CODE_LOCATION_PERMISSION);
+                            Log.d(TAG, "jest mamy to mordo w chuj");
+//                            OkHttpClient client = new OkHttpClient();
+//                            new weatherTask(URL,API,selected_date,tescik).execute();
+                    } else { getCurrentLocation();  Log.d(TAG, "jest mamy tofasfdasdfasdfadsf mordo w chuj");}
+                }
                 else if(!editTextLocation.getText().equals(""))
                     {
                         CITY = String.valueOf(editTextLocation.getText());
                         URL ="https://community-open-weather-map.p.rapidapi.com/forecast?q="+ CITY;
                         Log.d(TAG, "chuj nie mamy tego ");
-                        OkHttpClient client = new OkHttpClient();
-                        new weatherTask().execute();
+//                        OkHttpClient client = new OkHttpClient();
+//                        new weatherTask(URL,API,selected_date,tescik).execute();
                     }
-//                OkHttpClient client = new OkHttpClient();
-//                new weatherTask().execute();
+                OkHttpClient client = new OkHttpClient();
+                new weatherTask(URL,API,selected_date,tescik).execute();
+
+                Log.d(TAG, "button clicked");
+
+
             }
         });
-
+        findViewById(R.id.floatingbtn1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WearActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mDisplayDate = (TextView) findViewById(R.id.textViewDate);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
@@ -127,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
                 DatePicker dp = dialog.getDatePicker();
                 dp.setMinDate(cal.getTimeInMillis());
+
                 cal.add(Calendar.DAY_OF_MONTH, 6);
 //                    dialog.getDatePicker().setMinDate(Calendar.getInstance().getTimeInMillis());
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -176,9 +211,9 @@ public class MainActivity extends AppCompatActivity {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
                 int h = hourOfDay;
-                if ((h % 3) != 0) {
+                if ((h % 3) != 0)
                     h -= (h % 3);
-                }
+
                 selected_date += String.valueOf(h) + ":00:00";
                 Log.d(TAG, "aktualna data do wszystkiego" + selected_date);
                 tescik = findViewById(R.id.textViewtest);
@@ -223,86 +258,75 @@ public class MainActivity extends AppCompatActivity {
                                 .removeLocationUpdates(this);
                         if (locationResult != null && locationResult.getLocations().size() > 0) {
                                             int latestLocationIndex = locationResult.getLocations().size()-1;
-                                            lat = locationResult.getLocations().get(latestLocationIndex).getLatitude();
-                                            lon = locationResult.getLocations().get(latestLocationIndex).getLongitude();
+                                            double lat = locationResult.getLocations().get(latestLocationIndex).getLatitude();
+                                            double lon = locationResult.getLocations().get(latestLocationIndex).getLongitude();
                                             textViewLatLong.setText(String.format("Latitude:%s\nLongtitude:%s",lat,lon));
                                             URL = "https://community-open-weather-map.p.rapidapi.com/forecast?lat="+lat+"&lon="+lon;
                                         OkHttpClient client = new OkHttpClient();
-                                        new weatherTask().execute();
+                                        new weatherTask(URL,API,selected_date,tescik).execute();
                         }
                         progressBar.setVisibility(View.GONE);
                     }
                 }, Looper.getMainLooper());
     }
 
-    class weatherTask extends AsyncTask<String, Void, Void> {
-
-    @Override
-    protected Void doInBackground(final String... strings) {
-
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(URL)
-                .get()
-                .addHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com")
-                .addHeader("x-rapidapi-key", API)
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    final String myResponse = response.body().string();
-                    tester=myResponse;
-                    try {
-                        final JSONObject jsonObj = new JSONObject(tester);
-                        JSONObject weather;
-
-                        for(int i = 0; i < 16; i++)
-                        {
-                            String e = jsonObj.getJSONArray("list").getJSONObject(i).getString("dt_txt");
-                            SimpleDateFormat tak =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            Date current_date_json = tak.parse(e);
-                            SimpleDateFormat nie =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            Date users_date = nie.parse(selected_date);
-
-                            if(current_date_json.equals(users_date))
-                            {
-                                weather = jsonObj.getJSONArray("list").getJSONObject(i).getJSONObject("main");
-                                tester2 = weather.getString("temp");
-                                float a = Float.parseFloat(tester2)-273.15f;
-                                tester2 = String.valueOf(a);
-                                tescik.setText(tester2+"\n"+ selected_date);
-                                break;
-                            }
-
-                        }
-                    } catch (JSONException | ParseException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-        });
-        return null;
-    }
-
-//            Response response = null;
-//            try {
-//                response = client.newCall(request).execute();
-//            } catch (IOException e) {
+//    class weatherTask extends AsyncTask<String, Void, Void> {
+//
+//    @Override
+//    protected Void doInBackground(final String... strings) {
+//
+//        OkHttpClient client = new OkHttpClient();
+//        Request request = new Request.Builder()
+//                .url(URL)
+//                .get()
+//                .addHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com")
+//                .addHeader("x-rapidapi-key", API)
+//                .build();
+//
+//        client.newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(@NotNull Call call, @NotNull IOException e) {
 //                e.printStackTrace();
 //            }
-//            return response;
-
-//        @Override
-//        protected void onPostExecute(String result) {
 //
-
-}
+//            @Override
+//            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                if (response.isSuccessful()) {
+//                    final String myResponse = response.body().string();
+//                    tester=myResponse;
+//                    try {
+//                        final JSONObject jsonObj = new JSONObject(tester);
+//                        JSONObject weather;
+//
+//                        for(int i = 0; i < 16; i++)
+//                        {
+//                            String e = jsonObj.getJSONArray("list").getJSONObject(i).getString("dt_txt");
+//                            SimpleDateFormat tak =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                            Date current_date_json = tak.parse(e);
+//                            SimpleDateFormat nie =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                            Date users_date = nie.parse(selected_date);
+//
+//                            if(current_date_json.equals(users_date))
+//                            {
+//                                weather = jsonObj.getJSONArray("list").getJSONObject(i).getJSONObject("main");
+//                                tester2 = weather.getString("temp");
+//                                float a = Float.parseFloat(tester2)-273.15f;
+//                                tester2 = String.valueOf(a);
+//                                tescik.setText(tester2+"\n"+ selected_date);
+//                                break;
+//                            }
+//
+//                        }
+//                    } catch (JSONException | ParseException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//            }
+//        });
+//        return null;
+//    }
+//
+//
+//}
 }

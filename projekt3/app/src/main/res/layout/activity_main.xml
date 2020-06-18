@@ -8,51 +8,165 @@
     android:background="@drawable/bg_gradient"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textViewtest2"
-        android:layout_width="285dp"
-        android:layout_height="65dp"
-        android:fontFamily="@font/caveat_brush"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchLocation"
-        app:layout_constraintVertical_bias="0.060000002" />
-
-    <TextView
-        android:id="@+id/textViewDate"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="285dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/country_text"
-        android:fontFamily="@font/caveat_brush"
-        android:text="Wybierz datę"
-        android:clickable="true"
-        android:textColor="#122259"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="casual"
-        android:text="WEARAPP"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#4273FF"
-        android:textSize="44sp"
-        android:typeface="normal"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="casual"
+                android:text="WEARAPP"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#4273FF"
+                android:textSize="44sp"
+                android:typeface="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/caveat_brush"
+                android:text="Witaj w aplikacji WearApp, wybierz  datę oraz miejsce"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#122259"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/textViewDate"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="285dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/country_text"
+                android:clickable="true"
+                android:fontFamily="@font/caveat_brush"
+                android:text="Wybierz datę"
+                android:textColor="#122259"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <EditText
+                android:id="@+id/ed_location"
+                android:layout_width="285dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="23dp"
+                android:background="@drawable/country_text"
+                android:drawableLeft="@drawable/ic_baseline_location_city_24"
+                android:drawablePadding="10dp"
+                android:paddingLeft="20dp"
+                android:fontFamily="@font/caveat_brush"
+                android:hint="Wpisz miasto"
+                android:inputType="textPersonName"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+
+            <Switch
+                android:id="@+id/switchLocation"
+                android:layout_width="285dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="23dp"
+                android:background="@drawable/country_text"
+                android:drawableLeft="@drawable/ic_baseline_gps_fixed_24"
+                android:drawablePadding="10dp"
+                android:paddingLeft="20dp"
+                android:fontFamily="@font/caveat_brush"
+                android:text="twoja lokalizacja"
+                android:textColor="#122259"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ed_location" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/textViewtest2"
+                android:layout_width="285dp"
+                android:layout_height="65dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/caveat_brush"
+                android:textSize="24sp" />
+            <Space
+                android:layout_width="60dp"
+                android:layout_height="30dp"/>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_baseline_check_24" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/textViewtest"
+                android:layout_width="285dp"
+                android:layout_height="65dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/caveat_brush"
+                android:textSize="24sp"/>
+
+            <Space
+                android:layout_width="60dp"
+                android:layout_height="30dp"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingbtn1"
+                android:layout_width="101dp"
+                android:layout_height="58dp"
+                android:clickable="true"
+                android:src="@drawable/arrow"
+                app:fabSize="normal" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
     <ProgressBar
         android:id="@+id/loader"
@@ -69,94 +183,5 @@
         android:text="Something went wrong"
         android:visibility="gone" />
 
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="15dp"
-        android:fontFamily="@font/caveat_brush"
-        android:text="Witaj w aplikacji WearApp, wybierz  datę oraz miejsce"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#122259"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <TextView
-        android:id="@+id/textViewtest"
-        android:layout_width="285dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="14dp"
-        android:fontFamily="@font/caveat_brush"
-
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewtest2"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/ed_location"
-        android:layout_width="285dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="23dp"
-        android:background="@drawable/country_text"
-        android:drawableLeft="@drawable/ic_baseline_location_city_24"
-        android:fontFamily="@font/caveat_brush"
-        android:hint="Wpisz miasto"
-        android:inputType="textPersonName"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
-
-    <Switch
-        android:id="@+id/switchLocation"
-        android:layout_width="285dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="23dp"
-        android:background="@drawable/country_text"
-        android:drawableLeft="@drawable/ic_baseline_gps_fixed_24"
-        android:fontFamily="@font/caveat_brush"
-        android:text="twoja lokalizacja"
-        android:textColor="#122259"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_location" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingbtn1"
-        android:layout_width="101dp"
-        android:layout_height="58dp"
-        android:clickable="true"
-        android:src="@drawable/arrow"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.693"
-        app:layout_constraintStart_toEndOf="@+id/textViewtest"
-        app:layout_constraintTop_toBottomOf="@+id/floatingbtn"
-        app:layout_constraintVertical_bias="0.07999998" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.699"
-        app:layout_constraintStart_toEndOf="@+id/textViewtest2"
-        app:layout_constraintTop_toBottomOf="@+id/switchLocation"
-        app:layout_constraintVertical_bias="0.059"
-        app:srcCompat="@drawable/ic_baseline_check_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

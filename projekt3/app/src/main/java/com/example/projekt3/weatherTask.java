@@ -1,11 +1,10 @@
 package com.example.projekt3;
 
 import android.app.IntentService;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.AsyncTask;
 import android.widget.TextView;
-
-
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -22,12 +21,11 @@ import okhttp3.Request;
 import okhttp3.Response;
 class weatherTask extends AsyncTask<String, Void, Void>{
 
-
     String URL,API,selected_date;
     private String tester;
     private String temp;
-    TextView tescik;
-
+     TextView tescik;
+    static float Temperature;
 
     public weatherTask(String URL, String API, String selected_date,TextView t){
         this.URL=URL;
@@ -75,9 +73,10 @@ class weatherTask extends AsyncTask<String, Void, Void>{
                                 weather = jsonObj.getJSONArray("list").getJSONObject(i).getJSONObject("main");
                                 temp = weather.getString("temp");
                                 float a = Float.parseFloat(temp)-273.15f;
-
+                                Temperature = a;
                                 temp = String.valueOf(Math.round(a))+ "°C";
                                 tescik.setText(temp+"\n"+ selected_date);
+
                                 break;
                             }
 
@@ -91,6 +90,4 @@ class weatherTask extends AsyncTask<String, Void, Void>{
         });
         return null;
     }
-
-
 }

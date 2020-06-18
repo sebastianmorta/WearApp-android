@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -15,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class WearActivity extends Activity {
 
-
+    private static final String TAG = "WearActivity";
     enum CLOTHES {
         HAT,
         SHIRT,
@@ -23,7 +24,7 @@ public class WearActivity extends Activity {
         TRAUSERS
     };
 
-
+    static String gear_element;
     FloatingActionButton floatingActionButton;
     RadioGroup radioGroup;
     RadioButton radioButton;
@@ -35,6 +36,7 @@ public class WearActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wear);
 
+        float temp =weatherTask.Temperature;
         radioGroup=findViewById(R.id.radioGroup2);
 
         findViewById(R.id.floatingbtn2).setOnClickListener(new View.OnClickListener() {
@@ -42,14 +44,16 @@ public class WearActivity extends Activity {
             public void onClick(View v) {
                 int radioId = radioGroup.getCheckedRadioButtonId();
                 radioButton = findViewById(radioId);
+                try {
+                    gear_element = String.valueOf(radioButton.getText());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(WearActivity.this, CustomActivity.class);
                 startActivity(intent);
-//                Toast.makeText(this, "Selected "+String.valueOf(radioId), Toast.LENGTH_SHORT).show();
+
             }
         });
     }
-//    public void checkButton(View v){
-//
-//
-//    }
+
 }

@@ -8,111 +8,196 @@
     android:background="@drawable/bg_gradient3"
     tools:context=".CustomActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ScrollView
-        android:layout_width="482dp"
-        android:layout_height="212dp"
-        android:scaleType="fitXY"
-        android:fontFamily="@font/caveat_brush">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="casual"
+            android:text="WEARAPP"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#4273FF"
+            android:textSize="44sp"
+            android:typeface="normal" />
 
+        <ScrollView
+            android:id="@+id/scrollColor"
+            android:layout_width="match_parent"
+            android:layout_height="212dp"
+            android:fontFamily="@font/caveat_brush"
+            android:scaleType="fitXY">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="209dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:fontFamily="@font/caveat_brush"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/country_text"
+                    android:drawableLeft="@drawable/brush"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/caveat_brush"
+                    android:paddingLeft="20dp"
+                    android:text="bialy"
+                    android:textColor="#FFFFFF"
+                    android:textSize="26dp" />
+
+                <Switch
+                    android:id="@+id/switch2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/country_text"
+                    android:drawableLeft="@drawable/brush"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/caveat_brush"
+                    android:paddingLeft="20dp"
+                    android:text="czerwony"
+                    android:textColor="#CD0A0A"
+                    android:textSize="26sp" />
+
+                <Switch
+                    android:id="@+id/switch3"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/country_text"
+                    android:drawableLeft="@drawable/brush"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/caveat_brush"
+                    android:paddingLeft="20dp"
+                    android:text="brazowy"
+                    android:textColor="#674114"
+                    android:textSize="26dp" />
+
+                <Switch
+                    android:id="@+id/switch4"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/country_text"
+                    android:drawableLeft="@drawable/brush"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/caveat_brush"
+                    android:paddingLeft="20dp"
+                    android:text="niebieski"
+                    android:textColor="#1C69EC"
+                    android:textSize="26dp" />
+
+                <Switch
+                    android:id="@+id/switch5"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/country_text"
+                    android:drawableLeft="@drawable/brush"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/caveat_brush"
+                    android:paddingLeft="20dp"
+                    android:text="szary"
+                    android:textColor="#fff"
+                    android:textSize="26dp" />
+
+                <Switch
+                    android:id="@+id/switch6"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/country_text"
+                    android:drawableLeft="@drawable/brush"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/caveat_brush"
+                    android:paddingLeft="20dp"
+                    android:text="pomaranczowy"
+                    android:textColor="#FF9800"
+                    android:textSize="26dp" />
+
+            </LinearLayout>
+        </ScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="209dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:orientation="vertical"
-            android:fontFamily="@font/caveat_brush">
+            android:layout_height="183dp"
+            android:gravity="center">
 
-            <Switch
-                android:id="@+id/switch1"
-                android:fontFamily="@font/caveat_brush"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/country_text"
-                android:drawableLeft="@drawable/brush"
-                android:textColor="#FFFFFF"
-                android:text="  bialy"
-                android:textSize="26dp" />
 
-            <Switch
-                android:id="@+id/switch2"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/country_text"
-                android:drawableLeft="@drawable/brush"
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/seasonbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/caveat_brush"
-                android:text="  czerwony"
-                android:textColor="#CD0A0A"
-                android:textSize="26sp" />
+                android:gravity="center"
+                android:text="Sezon     "
+                android:textColor="#B718B507"
+                android:textIsSelectable="true"
+                android:textOff="Wiosna/Lato"
+                android:textOn="Jesień/Zima"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                android:thumb="@drawable/sw_thumb"
+                app:showText="true"
 
-            <Switch
-                android:id="@+id/switch3"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/country_text"
-                android:drawableLeft="@drawable/brush"
-                android:fontFamily="@font/caveat_brush"
-                android:textColor="#674114"
-                android:text="  brazowy"
-                android:textSize="26dp" />
-            <Switch
-                android:id="@+id/switch4"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/country_text"
-                android:drawableLeft="@drawable/brush"
-                android:fontFamily="@font/caveat_brush"
-                android:textColor="#1C69EC"
-                android:text="  niebieski"
-                android:textSize="26dp" />
-            <Switch
-                android:id="@+id/switch5"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/country_text"
-                android:drawableLeft="@drawable/brush"
-                android:fontFamily="@font/caveat_brush"
-                android:textColor="#6E6E6E"
-                android:text="  szary"
-                android:textSize="26dp" />
 
-            <Switch
-                android:id="@+id/switch6"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/country_text"
-                android:drawableLeft="@drawable/brush"
-                android:fontFamily="@font/caveat_brush"
-                android:textColor="#FF9800"
-                android:text="  pomaranczowy"
-                android:textSize="26dp" />
+                app:track="@drawable/sw_track" />
+
 
         </LinearLayout>
-    </ScrollView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonweb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/country_text"
+        android:fontFamily="@font/caveat_brush"
+        android:text="Przejdź do strony"
+        android:textSize="50sp"
+        android:clickable="true"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.465" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

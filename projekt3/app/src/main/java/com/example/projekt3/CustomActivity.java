@@ -51,8 +51,6 @@ public class CustomActivity extends Activity {
                 startActivity(webIntent);
             }
         });
-
-
     }
 
     public void launchWebsite(View view){

@@ -24,7 +24,7 @@ class weatherTask extends AsyncTask<String, Void, Void>{
     String URL,API,selected_date;
     private String tester;
     private String temp;
-     TextView tescik;
+    TextView tescik;
     static float Temperature;
 
     public weatherTask(String URL, String API, String selected_date,TextView t){
